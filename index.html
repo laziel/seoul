@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#17201d" />
+		<meta
+			name="description"
+			content="서울의 밤, 빛과 리듬이 만나는 도시."
+		/>
+		<title>seoul — city in motion</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				color-scheme: dark;
+				font-family: "DM Sans", sans-serif;
+				font-synthesis: none;
+				text-rendering: optimizeLegibility;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				--paper: #f5f1e9;
+				--acid: #d8f36a;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				min-width: 320px;
+				background: #17201d;
+				scroll-behavior: smooth;
+			}
+
+			body {
+				margin: 0;
+				color: var(--paper);
+			}
+
+			.hero {
+				position: relative;
+				display: grid;
+				min-height: 100svh;
+				grid-template-rows: auto 1fr auto;
+				overflow: hidden;
+				isolation: isolate;
+				padding: 30px clamp(22px, 5vw, 76px) 28px;
+				background: #17201d;
+			}
+
+			.hero::before,
+			.hero::after {
+				position: absolute;
+				z-index: -1;
+				inset: 0;
+				content: "";
+				pointer-events: none;
+			}
+
+			.hero::before {
+				background-image: url("https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=2400&q=88");
+				background-position: center 52%;
+				background-size: cover;
+				animation: arrive 1.2s ease-out both;
+			}
+
+			.hero::after {
+				background:
+					linear-gradient(180deg, rgb(12 20 19 / 38%) 0%, transparent 24%, rgb(12 20 19 / 12%) 55%, rgb(12 20 19 / 67%) 100%),
+					linear-gradient(90deg, rgb(12 20 19 / 24%), transparent 68%);
+			}
+
+			.topbar,
+			.footer,
+			.brand,
+			.location,
+			.scroll-cue {
+				display: flex;
+				align-items: center;
+			}
+
+			.topbar,
+			.footer {
+				justify-content: space-between;
+			}
+
+			.brand {
+				gap: 11px;
+				color: var(--paper);
+				font-size: 12px;
+				font-weight: 600;
+				letter-spacing: 0;
+				text-decoration: none;
+			}
+
+			.brand-mark {
+				display: grid;
+				width: 29px;
+				aspect-ratio: 1;
+				place-items: center;
+				border: 1px solid rgb(245 241 233 / 62%);
+				border-radius: 50%;
+				color: var(--acid);
+				font-size: 14px;
+			}
+
+			.edition {
+				color: rgb(245 241 233 / 76%);
+				font-size: 10px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+			}
+
+			.centerpiece {
+				display: grid;
+				align-content: center;
+				justify-items: center;
+				padding-bottom: 1.5vh;
+				text-align: center;
+				animation: lift-in 900ms 120ms both;
+			}
+
+			.eyebrow {
+				margin: 0 0 6px;
+				color: var(--acid);
+				font-size: 10px;
+				font-weight: 600;
+				letter-spacing: 0.22em;
+				text-transform: uppercase;
+			}
+
+			h1 {
+				margin: 0;
+				color: var(--paper);
+				font-family: Manrope, sans-serif;
+				font-size: clamp(92px, 19vw, 268px);
+				font-weight: 500;
+				letter-spacing: -0.075em;
+				line-height: 0.88;
+				text-shadow: 0 4px 42px rgb(0 0 0 / 14%);
+			}
+
+			.tagline {
+				margin: 26px 0 0;
+				color: rgb(245 241 233 / 88%);
+				font-size: clamp(11px, 1.2vw, 13px);
+				letter-spacing: 0.04em;
+			}
+
+			.location {
+				gap: 10px;
+				color: rgb(245 241 233 / 82%);
+				font-size: 10px;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+
+			.location-dot {
+				width: 6px;
+				aspect-ratio: 1;
+				border-radius: 50%;
+				background: var(--acid);
+				box-shadow: 0 0 12px rgb(216 243 106 / 70%);
+			}
+
+			.scroll-cue {
+				gap: 12px;
+				color: var(--paper);
+				font-size: 10px;
+				letter-spacing: 0.13em;
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+
+			.scroll-line {
+				width: 38px;
+				height: 1px;
+				background: var(--acid);
+				transform-origin: left;
+				animation: extend 1s 700ms both;
+			}
+
+			.next-section {
+				display: grid;
+				min-height: 38vh;
+				align-content: center;
+				padding: 52px clamp(22px, 12vw, 180px);
+				background: #e9e6dc;
+				color: #222a26;
+			}
+
+			.next-section p {
+				max-width: 680px;
+				margin: 0;
+				font-family: Manrope, sans-serif;
+				font-size: clamp(22px, 3.4vw, 42px);
+				font-weight: 500;
+				line-height: 1.35;
+			}
+
+			.next-section span {
+				display: block;
+				margin-bottom: 14px;
+				color: #657b3b;
+				font-family: "DM Sans", sans-serif;
+				font-size: 10px;
+				font-weight: 600;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+			}
+
+			@keyframes arrive {
+				from { opacity: 0; transform: scale(1.035); }
+				to { opacity: 1; transform: scale(1); }
+			}
+
+			@keyframes lift-in {
+				from { opacity: 0; transform: translateY(16px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			@keyframes extend {
+				from { transform: scaleX(0); }
+				to { transform: scaleX(1); }
+			}
+
+			@media (max-width: 560px) {
+				.hero {
+					min-height: 92svh;
+					padding-top: 22px;
+					padding-bottom: 22px;
+				}
+
+				.edition {
+					max-width: 120px;
+					text-align: right;
+					line-height: 1.6;
+				}
+
+				h1 {
+					font-size: clamp(88px, 25vw, 142px);
+				}
+
+				.tagline {
+					max-width: 250px;
+					line-height: 1.8;
+				}
+
+				.location {
+					gap: 7px;
+					font-size: 9px;
+					letter-spacing: 0.06em;
+				}
+
+				.scroll-cue {
+					gap: 8px;
+					font-size: 9px;
+				}
+
+				.scroll-line {
+					width: 22px;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				*, *::before, *::after {
+					animation-duration: 0.01ms !important;
+					animation-iteration-count: 1 !important;
+					scroll-behavior: auto !important;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="hero" aria-labelledby="page-title">
+				<header class="topbar">
+					<a class="brand" href="#top" aria-label="Seoul home">
+						<span class="brand-mark" aria-hidden="true">S</span>
+						<span>SEOUL, SOUTH KOREA</span>
+					</a>
+					<span class="edition">A city in motion · 2026</span>
+				</header>
+
+				<div class="centerpiece" id="top">
+					<p class="eyebrow">The night is young</p>
+					<h1 id="page-title">seoul</h1>
+					<p class="tagline">오래된 골목과 새로운 리듬이 만나는 곳</p>
+				</div>
+
+				<footer class="footer">
+					<div class="location">
+						<span class="location-dot" aria-hidden="true"></span>
+						<span>37° 33′ N &nbsp; 126° 58′ E</span>
+					</div>
+					<a class="scroll-cue" href="#city-note">
+						<span class="scroll-line" aria-hidden="true"></span>
+						<span>Scroll to explore</span>
+					</a>
+				</footer>
+			</section>
+
+			<section class="next-section" id="city-note" aria-label="About Seoul">
+				<p>
+					<span>Between then and now</span>
+					하루가 저물면, 서울은 또 다른 표정으로 깨어납니다.
+				</p>
+			</section>
+		</main>
+	</body>
+</html>
